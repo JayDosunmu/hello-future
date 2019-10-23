@@ -1,0 +1,21 @@
+{
+  "name": "hello-future",
+  "version": "1.0.0",
+  "description": "Girls Build LA project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JayDosunmu/hello-future.git"
+  },
+  "author": "taslim.dosunmu@joinhoney.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JayDosunmu/hello-future/issues"
+  },
+  "homepage": "https://github.com/JayDosunmu/hello-future#readme",
+  "dependencies": {
+  }
+}
