@@ -11,7 +11,7 @@ const {
 const app = express();
 
 app.get('/questions', async (req, res) => {
-    // get a random question
+    // get all questions
     res.json(await getQuestions());
 });
 

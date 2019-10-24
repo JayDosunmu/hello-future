@@ -18,7 +18,7 @@ async function getQuestions() {
  * @returns {Array} list of answer objects
  */
 async function getAnswers(qid) {
-    return []
+    return pool.query('SELECT * FROM answers WHERE qid=$1;', [qid]);
 }
 
 module.exports = {
