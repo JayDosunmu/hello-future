@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node backend/index.js",
     "start-watch": "nodemon backend/index.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
     "test": "jest"
   },
   "repository": {
