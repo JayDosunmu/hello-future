@@ -35,23 +35,33 @@ class App extends React.Component {
   }
 
   async initQuestions() {
+    console.log('Getting new questions')
     const questions = await axios.get('/api/questions');
-
     this.setState({
-      questions: _.shuffle(questions),
+      questions: _.shuffle(questions.data),
     })
     await this.newQuestion();
   }
 
   async newQuestion() {
+    if (!this.state.questions) {
+      this.initQuestions();
+    }
+    console.log(this.state.questions);
     console.log('setting question');
     const numQuestions = this.state.questions.length;
     this.setState({
       currQuestion: (this.state.currQuestion + 1) % numQuestions
     })
     const newColor = _.sample(colors);
-    console.log(`Next color: ${newColor}`);
     document.body.style.backgroundColor = newColor;
+  }
+
+  getCurrentQuestion(index) {
+    console.log(index)
+    console.log(this.state.questions)
+    console.log(`question: ${this.state.questions[index]}, `)
+    return this.state.questions[index];
   }
 
   resetScore() {
@@ -74,7 +84,12 @@ class App extends React.Component {
           <p className='title'>
             Hello Futures Trivia!
           </p>
-          <Question question={this.state.currQuestion} onCorrect={this.onCorrect}/>
+          {
+            this.state.questions.length ?
+            <Question question={this.getCurrentQuestion(this.state.currQuestion)} onCorrect={this.onCorrect}/> :
+            <div>No current question</div>
+          }
+          <button onClick={this.newQuestion}>Get a new question</button>
           <Score score={this.state.score} />
         </header>
       </div>
