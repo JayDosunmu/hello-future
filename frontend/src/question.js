@@ -12,7 +12,7 @@ class Question extends React.Component {
         this.getAnswers = this.getAnswers.bind(this);
     }
     async componentDidMount() {
-        await this.getAnswers(this.props.question)
+        await this.getAnswers(this.props.question.qid)
     }
 
     async getAnswers(qid) {
