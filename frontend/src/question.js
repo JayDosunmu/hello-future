@@ -18,11 +18,18 @@ class Question extends React.Component {
     async getAnswers(qid) {
         try {
             const parsedQid = parseInt(qid, 10);
-            return axios.get(`/api/answers/${parsedQid}`);
+            const answers = axios.get(`/api/answers/${parsedQid}`);
+            console.log(`Getting answers: ${answers}`);
+            return answers.data;
         } catch (err) {
             return [];
         }
     }
+
+    // isCorrect(aid) {
+    //     if (aid == )
+
+    // }
 
     render() {
         return (
@@ -30,6 +37,12 @@ class Question extends React.Component {
                 <div className='question'>
                     {this.props.question.text}
                 </div>
+                {
+                    this.state.answers.forEach((val, i) => 
+                        <div>{val.answerText}</div>
+                    // <Answer index={val.aid} answer={val} isCorrect={this.isCorrect}/>)
+                    )
+                }
             </div>
         )
     }
