@@ -2,6 +2,7 @@
 const path = require('path');
 // Installed dependencies
 const express = require('express');
+const cors = require('cors');
 
 const {
     getAnswers,
@@ -17,6 +18,7 @@ app.use(express.static(path.join(
     'frontend',
     'build'
 )));
+app.use(cors());
 app.use('/api', api);
 
 api.get('/questions', async (req, res) => {
