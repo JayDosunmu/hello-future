@@ -9,13 +9,22 @@ const {
 } = require('./queries');
 
 const app = express();
+const api = express.Router();
 
-app.get('/questions', async (req, res) => {
+app.use(express.static(path.join(
+    __dirname,
+    '..',
+    'frontend',
+    'build'
+)));
+app.use('/api', api);
+
+api.get('/questions', async (req, res) => {
     // get all questions
     res.json(await getQuestions());
 });
 
-app.get('/answers/:questionId', async (req, res) => {
+api.get('/answers/:questionId', async (req, res) => {
     // get the answers associated with a question
     try {
         const qId = parseInt(req.params.questionId, 10);
@@ -26,7 +35,13 @@ app.get('/answers/:questionId', async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+    res.sendFile(path.join(
+        __dirname,
+        '..',
+        'frontend',
+        'build',
+        'index.html'
+    ));
 });
 
 const port = process.env.PORT || 5000;
