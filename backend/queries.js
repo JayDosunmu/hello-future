@@ -9,7 +9,8 @@ const pool = new Pool({ connectionString });
  * @returns {Array} list of question objects
  */
 async function getQuestions() {
-    return pool.query('SELECT * FROM questions;');
+    const { rows } = await pool.query('SELECT * FROM questions;');
+    return rows;
 }
 
 /**
@@ -18,7 +19,8 @@ async function getQuestions() {
  * @returns {Array} list of answer objects
  */
 async function getAnswers(qid) {
-    return pool.query('SELECT * FROM answers WHERE qid=$1;', [qid]);
+    const { rows } = await pool.query('SELECT * FROM answers WHERE qid=$1;', [qid]);
+    return rows;
 }
 
 module.exports = {
